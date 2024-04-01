@@ -528,9 +528,9 @@ static int extract_tdp_root(struct kprobe *p, struct pt_regs *regs)
 		pid_t oldpid = vmroot_pid;
 
 		vmroot_pid = cpu->kvm->userspace_pid;
-		vmroot_pgtbl = mmu->root_hpa;
-		vmroot_type = mmu->shadow_root_level;
-		vmroot_direct = mmu->direct_map;
+		vmroot_pgtbl = mmu->root.hpa;
+		vmroot_type = mmu->root_role.level;
+		vmroot_direct = mmu->root_role.direct;
 		vmroot_maxphys = cpu->arch.maxphyaddr;
 
 		if (oldpid != vmroot_pid) {
